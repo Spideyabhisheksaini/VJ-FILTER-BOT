@@ -91,7 +91,7 @@ Cᴏᴍᴍᴀɴᴅs Aɴᴅ Usᴀɢᴇ:
 my features Stay here new features coming soon...  
  <b>✯ Maintained by : <a href=https://t.me/Tonystark_botz>☢ᴛᴏɴʏ sᴛᴀʀᴋ☢</a></b>
   
- <b>✯ Join here : <a href=https://t.me/Movies_Telegram_Files>☢Join my updateds☢</a></b> 
+ <b>✯ Join here : <a href=https://t.me/MovieTimes_TV>☢Join my updateds☢</a></b> 
   
  ./id - <code>ɢᴇᴛ ɪᴅ ᴏꜰ ᴀ ꜱᴘᴇᴄɪꜰɪᴇᴅ ᴜꜱᴇʀ.</ 
  code> 
