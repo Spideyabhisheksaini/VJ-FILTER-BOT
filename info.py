@@ -31,14 +31,14 @@ SPELL_IMG = environ.get("SPELL_IMG", "https://te.legra.ph/file/15c1ad448dfe472a5
 
 # Admins, Channels & Users
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1002057490725'))
-ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '5019668523 6410052396').split()]
+ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '5019668523 6410052396 6302921275').split()]
 CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002048583251 -1002035565400 -1002079712359 -1002121649557 -1002046383949 -1002145382878 -1002075429339').split()]
 auth_users = [int(user) if id_pattern.search(user) else user for user in environ.get('AUTH_USERS', '').split()]
 AUTH_USERS = (auth_users + ADMINS) if auth_users else []
 
 # auth_channel means force subscribe channel.
-auth_channel = environ.get('AUTH_CHANNEL', '') # give your force subscribe channel id here else leave it blank
-auth_grp = environ.get('AUTH_GROUP', '') # give your force subscribe group id here else leave it blank
+auth_channel = environ.get('AUTH_CHANNEL', '-1002004297540') # give your force subscribe channel id here else leave it blank
+auth_grp = environ.get('AUTH_GROUP', '-1002028944957') # give your force subscribe group id here else leave it blank
 AUTH_CHANNEL = int(auth_channel) if auth_channel and id_pattern.search(auth_channel) else None
 AUTH_GROUPS = [int(ch) for ch in auth_grp.split()] if auth_grp else None
 support_chat_id = environ.get('SUPPORT_CHAT_ID', '-1002125406041')
@@ -55,7 +55,7 @@ DATABASE_NAME = environ.get('DATABASE_NAME', "techvjbot")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'techvjcollection')
 
 # Premium And Referal Settings
-PREMIUM_AND_REFERAL_MODE = bool(environ.get('PREMIUM_AND_REFERAL_MODE', False)) # Set Ture Or False
+PREMIUM_AND_REFERAL_MODE = bool(environ.get('PREMIUM_AND_REFERAL_MODE', True)) # Set Ture Or False
 
 # If PREMIUM_AND_REFERAL_MODE is True Then Fill Below Variable, If Flase Then No Need To Fill.
 REFERAL_COUNT = int(environ.get('REFERAL_COUNT', '10')) # number of referal count
@@ -67,14 +67,14 @@ OWNER_USERNAME = environ.get('OWNER_USERNAME', 'Tony_Stark_75') # owner username
 # Links
 GRP_LNK = environ.get('GRP_LNK', 'https://t.me/+2ZJfsYBMRslhYmE1')
 CHNL_LNK = environ.get('CHNL_LNK', 'https://t.me/MovieTimesTV')
-TUTORIAL = environ.get('TUTORIAL', 'https://t.me/modijiurltutorial')
-VERIFY_TUTORIAL = environ.get('VERIFY_TUTORIAL', 'https://t.me/modijiurltutorial')
+TUTORIAL = environ.get('TUTORIAL', 'https://t.me/+I7ckBD9uI8pmMjc1')
+VERIFY_TUTORIAL = environ.get('VERIFY_TUTORIAL', 'https://t.me/+I7ckBD9uI8pmMjc1')
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'MovieTimesXDisc') # Support Chat Link Without https:// or @
 
 # True Or False
-PM_SEARCH = bool(environ.get('PM_SEARCH', True)) # In Pm Search Currently Spell Check Doesn't Work.
+PM_SEARCH = bool(environ.get('PM_SEARCH', False)) # In Pm Search Currently Spell Check Doesn't Work.
 SHORTLINK_MODE = bool(environ.get('SHORTLINK_MODE', False))
-VERIFY = bool(environ.get('VERIFY', False))
+VERIFY = bool(environ.get('VERIFY', True))
 IS_SHORTLINK = bool(environ.get('IS_SHORTLINK', True))
 MAX_BTN = is_enabled((environ.get('MAX_BTN', "True")), True)
 IS_TUTORIAL = bool(environ.get('IS_TUTORIAL', True))
@@ -92,8 +92,8 @@ NO_RESULTS_MSG = bool(environ.get("NO_RESULTS_MSG", False))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 
 # Shortlink Info
-SHORTLINK_URL = environ.get('SHORTLINK_URL', 'modijiurl.com/api')
-SHORTLINK_API = environ.get('SHORTLINK_API', 'eb3cef5d19adf740e108c4efcd87fdde97e331f4')
+SHORTLINK_URL = environ.get('SHORTLINK_URL', 'runurl.in/api')
+SHORTLINK_API = environ.get('SHORTLINK_API', '5f101833931d191721e0e113b0dea1a8e37e8076')
 
 # Others
 MAX_B_TN = environ.get("MAX_B_TN", "5")
