@@ -92,7 +92,7 @@ NO_RESULTS_MSG = bool(environ.get("NO_RESULTS_MSG", False))
 USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 
 # Shortlink Info
-SHORTLINK_URL = environ.get('SHORTLINK_URL', 'runurl.in/api')
+SHORTLINK_URL = environ.get('SHORTLINK_URL', 'runurl.in')
 SHORTLINK_API = environ.get('SHORTLINK_API', '5f101833931d191721e0e113b0dea1a8e37e8076')
 
 # Others
