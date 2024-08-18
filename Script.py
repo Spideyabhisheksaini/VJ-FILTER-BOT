@@ -206,15 +206,16 @@ Nᴀᴍᴇ - {}"""
 
 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 <b>: {}</b>"""
 
-    CAPTION = """<b>{file_name}
+    CAPTION = """<b><i>{file_caption} ~ MovieTimesTV</i>
 
-╔═════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ════╗
-💥 𝙅𝙊𝙄𝙉 :- @MovieTimesTV 
-💥 𝙅𝙊𝙄𝙉 :- @AnimeHinofficial
-╚═════ ᴊᴏɪɴ ᴡɪᴛʜ ᴜs ════╝</b>""" 
+<blockquote>
+Jᴏɪɴ Us ➠ @MovieTimesTV 
+</blockquote></b>""" 
 
     IMDB_TEMPLATE_TXT = """
 <b>Query: {qurey}
+
+Requested by : {message.from_user.mention}
 
 IMDb Data:
 
@@ -227,10 +228,7 @@ IMDb Data:
 📆 Release Info : {release_date}
 🎛 Countries : <code>{countries}</code>
 
-
-⏰Result Shown in: {remaining_seconds} <i>seconds</i> 🔥
-
-Requested by : {message.from_user.mention}</b>"""
+Pᴏᴡᴇʀᴇᴅ Bʏ ➠ @TonyStark_Botz</b>"""
     
     ALL_FILTERS = """
 <b>Hᴇʏ {}, Tʜᴇsᴇ ᴀʀᴇ ᴍʏ ᴛʜʀᴇᴇ ᴛʏᴘᴇs ᴏғ ғɪʟᴛᴇʀs.</b>"""
