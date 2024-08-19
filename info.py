@@ -88,8 +88,6 @@ USE_CAPTION_FILTER = bool(environ.get('USE_CAPTION_FILTER', True))
 
 # Token Verification Info :
 VERIFY = bool(environ.get('VERIFY', False))
-VERIFY_SHORTLINK_URL = environ.get('VERIFY_SHORTLINK_URL', 'api.shareus.io')
-VERIFY_SHORTLINK_API = environ.get('VERIFY_SHORTLINK_API', 'I9M09gJEv7gVgh2kz7EYAOKLLd03')
 VERIFY_TUTORIAL = environ.get('VERIFY_TUTORIAL', 'https://t.me/+I7ckBD9uI8pmMjc1')
 
 # Shortlink Info
