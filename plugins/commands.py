@@ -2,23 +2,32 @@
 # Subscribe YouTube Channel For Amazing Bot @Tech_VJ
 # Ask Doubt on telegram @KingVJ01
 
-import os, string, logging, random, asyncio, time, datetime, re, sys, json, base64
+import os
+import string
+import time
+import logging
+import random
+import asyncio
+import time
+import datetime
 from Script import script
 from pyrogram import Client, filters, enums
 from pyrogram.errors import ChatAdminRequired, FloodWait
 from pyrogram.types import *
 from database.ia_filterdb import Media, get_file_details, unpack_new_file_id, get_bad_files
 from database.users_chats_db import db, delete_all_referal_users, get_referal_users_count, get_referal_all_users, referal_add_user
-from database.join_reqs import JoinReqs
-from info import CLONE_MODE, CHANNELS, REQUEST_TO_JOIN_MODE, TRY_AGAIN_BTN, ADMINS, SHORTLINK_MODE, PREMIUM_AND_REFERAL_MODE, STREAM_MODE, AUTH_CHANNEL, OWNER_USERNAME, REFERAL_PREMEIUM_TIME, REFERAL_COUNT, PAYMENT_TEXT, PAYMENT_QR, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, REQST_CHANNEL, SUPPORT_CHAT_ID, SUPPORT_CHAT, MAX_B_TN, VERIFY, SHORTLINK_API, SHORTLINK_URL, TUTORIAL, VERIFY_TUTORIAL, IS_TUTORIAL, URL
+from info import CHANNELS, ADMINS, SHORTLINK_MODE, PREMIUM_AND_REFERAL_MODE, STREAM_MODE, AUTH_CHANNEL, OWNER_USERNAME, REFERAL_PREMEIUM_TIME, REFERAL_COUNT, PAYMENT_TEXT, PAYMENT_QR, LOG_CHANNEL, PICS, BATCH_FILE_CAPTION, CUSTOM_FILE_CAPTION, PROTECT_CONTENT, CHNL_LNK, GRP_LNK, REQST_CHANNEL, SUPPORT_CHAT_ID, SUPPORT_CHAT, MAX_B_TN, VERIFY, SHORTLINK_API, SHORTLINK_URL, TUTORIAL, VERIFY_TUTORIAL, IS_TUTORIAL, URL
 from utils import get_settings, pub_is_subscribed, get_size, is_subscribed, save_group_settings, temp, verify_user, check_token, check_verification, get_token, get_shortlink, get_tutorial, get_seconds
 from database.connections_mdb import active_connection
+# from plugins.pm_filter import ENABLE_SHORTLINK
+import re, asyncio, os, sys
+import json
+import base64
 from urllib.parse import quote_plus
 from TechVJ.util.file_properties import get_name, get_hash, get_media_file_size
 logger = logging.getLogger(__name__)
 
 BATCH_FILES = {}
-join_db = JoinReqs
 
 @Client.on_message(filters.command("start") & filters.incoming)
 async def start(client, message):
@@ -84,43 +93,30 @@ async def start(client, message):
         )
         return
     
-        if AUTH_CHANNEL and not await is_subscribed(client, message):
+    if AUTH_CHANNEL and not await is_subscribed(client, message):
         try:
-            if REQUEST_TO_JOIN_MODE == True:
-                invite_link = await client.create_chat_invite_link(chat_id=(int(AUTH_CHANNEL)), creates_join_request=True)
-            else:
-                invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
+            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
         except ChatAdminRequired:
             logger.error("Make sure Bot is admin in Forcesub channel")
             return
-        btn = [[
-            InlineKeyboardButton("❆ Jᴏɪɴ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ ❆", url=invite_link.invite_link)
-        ]]
+        btn = [
+            [
+                InlineKeyboardButton("❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url=invite_link.invite_link)
+            ],[
+                InlineKeyboardButton('🤔 Why Iam Join🤔', callback_data='sinfo')
+            ]
+        ]
+
         if message.command[1] != "subscribe":
-            if REQUEST_TO_JOIN_MODE == True:
-                if TRY_AGAIN_BTN == True:
-                    try:
-                        kk, file_id = message.command[1].split("_", 1)
-                        btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"checksub#{kk}#{file_id}")])
-                    except (IndexError, ValueError):
-                        btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
-            else:
-                try:
-                    kk, file_id = message.command[1].split("_", 1)
-                    btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"checksub#{kk}#{file_id}")])
-                except (IndexError, ValueError):
-                    btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
-        if REQUEST_TO_JOIN_MODE == True:
-            if TRY_AGAIN_BTN == True:
-                text = "**🕵️ Jᴏɪɴ Tʜᴇ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ Tᴏ Gᴇᴛ Mᴏᴠɪᴇ Fɪʟᴇ\n\n👨‍💻 Fɪʀsᴛ Cʟɪᴄᴋ Oɴ Jᴏɪɴ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ Bᴜᴛᴛᴏɴ, Tʜᴇɴ Cʟɪᴄᴋ Oɴ Rᴇǫᴜᴇsᴛ Tᴏ Jᴏɪɴ Bᴜᴛᴛᴏɴ Aғᴛᴇʀ Cʟɪᴄᴋ Oɴ Tʀʏ Aɢᴀɪɴ Bᴜᴛᴛᴏɴ.**"
-            else:
-                await db.set_msg_command(message.from_user.id, com=message.command[1])
-                text = "**🕵️ Jᴏɪɴ Tʜᴇ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ Tᴏ Gᴇᴛ Mᴏᴠɪᴇ Fɪʟᴇ\n\n👨‍💻 Fɪʀsᴛ Cʟɪᴄᴋ Oɴ Jᴏɪɴ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ Bᴜᴛᴛᴏɴ, Tʜᴇɴ Cʟɪᴄᴋ Oɴ Rᴇǫᴜᴇsᴛ Tᴏ Jᴏɪɴ Bᴜᴛᴛᴏɴ.**"
-        else:
-            text = "**🕵️ Jᴏɪɴ Tʜᴇ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ Tᴏ Gᴇᴛ Mᴏᴠɪᴇ Fɪʟᴇ\n\n👨‍💻 Fɪʀsᴛ  Cʟɪᴄᴋ Oɴ Jᴏɪɴ Uᴘᴅᴀᴛᴇ Cʜᴀɴɴᴇʟ Bᴜᴛᴛᴏɴ, Tʜᴇɴ Jᴏɪɴ Cʜᴀɴɴᴇʟ Aғᴛᴇʀ Cʟɪᴄᴋ Oɴ Tʀʏ Aɢᴀɪɴ Bᴜᴛᴛᴏɴ**"
-        await client.send_message(
-            chat_id=message.from_user.id,
-            text=text,
+            try:
+                kk, file_id = message.command[1].split("_", 1)
+                btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", callback_data=f"checksub#{kk}#{file_id}")])
+            except (IndexError, ValueError):
+                btn.append([InlineKeyboardButton("↻ Tʀʏ Aɢᴀɪɴ", url=f"https://t.me/{temp.U_NAME}?start={message.command[1]}")])
+        await client.send_photo(
+           chat_id=message.from_user.id,
+            photo="https://telegra.ph/file/20b4aaaddb8aba646e53c.jpg",
+            caption="**You are not in our channel given below so you don't get the movie file...\n\nIf you want the movie file, click on the '🍿ᴊᴏɪɴ ᴏᴜʀ ʙᴀᴄᴋ-ᴜᴘ ᴄʜᴀɴɴᴇʟ🍿' button below and join our back-up channel, then click on the '🔄 Try Again' button below...\n\nThen you will get the movie files...**",
             reply_markup=InlineKeyboardMarkup(btn),
             parse_mode=enums.ParseMode.MARKDOWN
             )
