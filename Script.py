@@ -206,8 +206,8 @@ Nᴀᴍᴇ - {}"""
 
 𝗠𝗲𝘀𝘀𝗮𝗴𝗲 <b>: {}</b>"""
 
-    CAPTION = """<b><i>{file_caption} ~ MovieTimesTV</i>
-
+    CAPTION = """<b>{file_name}
+    
 <blockquote>
 Jᴏɪɴ Us ➠ @MovieTimesTV 
 </blockquote></b>""" 
